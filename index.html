@@ -19,8 +19,25 @@
     </style>
 </head>
 <body>
-    <video autoplay controls>
+
+    <video id="video" autoplay controls muted>
         <source src="Rick_Astley_Never_Gonna_Give_You_Up.mp4" type="video/mp4">
     </video>
+
+    <script>
+        const video = document.getElementById("video");
+
+        // Try to force play
+        video.play().then(() => {
+            // Try unmuting after play starts
+            setTimeout(() => {
+                video.muted = false;
+                video.volume = 1.0; // max volume
+            }, 500);
+        }).catch(err => {
+            console.log("Autoplay blocked:", err);
+        });
+    </script>
+
 </body>
 </html>
